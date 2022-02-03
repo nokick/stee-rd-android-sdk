@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.roundesk.sdk.config.AppController
 import com.roundesk.sdk.socket.SocketConnection
+import com.roundesk.sdk.util.Constants
 import com.roundesk.sdk.util.LogUtil
 
 class ForegroundService : Service() {
@@ -35,6 +36,10 @@ class ForegroundService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         //do heavy work on a background thread
         val input = intent?.getStringExtra("inputExtra")
+        Constants.SocketSuffix.SOCKET_CONNECT_SEND_CALL_TO_CLIENT =
+            SocketConstants.SocketSuffix.SOCKET_CONNECT_SEND_CALL_TO_CLIENT
+        Constants.socketConnection = SocketConnection()
+        Constants.socketConnection?.connectSocket()
         socketConnection = AppController.getInstance()?.getSocketInstance()
         LogUtil.e("AppBaseActivity", "socketConnection : ${socketConnection.toString()}")
         createNotificationChannel()

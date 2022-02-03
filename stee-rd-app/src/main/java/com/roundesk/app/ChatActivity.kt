@@ -63,7 +63,7 @@ class ChatActivity : AppBaseActivity(), View.OnClickListener,
             SocketConstants.SocketSuffix.SOCKET_CONNECT_SEND_CALL_TO_CLIENT
 
         SocketManager(
-            this, socketConnection!!,
+            this, Constants.socketConnection!!,
             Constants.SocketSuffix.SOCKET_CONNECT_SEND_CALL_TO_CLIENT
         ).createCallSocket()
     }

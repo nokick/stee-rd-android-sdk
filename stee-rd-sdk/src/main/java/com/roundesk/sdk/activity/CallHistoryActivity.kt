@@ -72,7 +72,7 @@ class CallHistoryActivity : AppBaseActivity(), SocketListener<Any>, View.OnClick
 
     private fun initSocket() {
         SocketManager(
-            this, socketConnection!!,
+            this, Constants.socketConnection!!,
             Constants.SocketSuffix.SOCKET_CONNECT_SEND_CALL_TO_CLIENT
         ).createCallSocket()
     }

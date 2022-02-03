@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import com.roundesk.sdk.socket.SocketConnection
+import com.roundesk.sdk.util.Constants
 import com.roundesk.sdk.util.LogUtil
 
 
@@ -42,14 +43,14 @@ class AppController : Application(), Application.ActivityLifecycleCallbacks {
     }*/
 
     fun getSocketInstance(): SocketConnection? {
-        return socketConnection
+        return Constants.socketConnection
     }
 
     override fun onActivityCreated(activity: Activity, p1: Bundle?) {
         LogUtil.e("isActivityChangingConfigurations", "onActivityCreated")
 //        if (socketConnection == null) {
-            socketConnection = SocketConnection()
-            socketConnection!!.connectSocket()
+        Constants.socketConnection = SocketConnection()
+        Constants.socketConnection!!.connectSocket()
 //        }
     }
 

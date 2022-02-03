@@ -19,6 +19,7 @@ import com.roundesk.sdk.base.AppBaseActivity
 import com.roundesk.sdk.dataclass.*
 import com.roundesk.sdk.network.ApiInterface
 import com.roundesk.sdk.network.ServiceBuilder
+import com.roundesk.sdk.socket.SocketConnection
 import com.roundesk.sdk.socket.SocketListener
 import com.roundesk.sdk.socket.SocketManager
 import com.roundesk.sdk.util.Constants
@@ -72,10 +73,11 @@ class SettingsActivity : AppBaseActivity(), SocketListener<Any>, View.OnClickLis
     private fun initSocket() {
         Constants.SocketSuffix.SOCKET_CONNECT_SEND_CALL_TO_CLIENT =
             SocketConstants.SocketSuffix.SOCKET_CONNECT_SEND_CALL_TO_CLIENT
-
+        Constants.socketConnection = SocketConnection()
+        Constants.socketConnection?.connectSocket()
         SocketManager(
             this,
-            socketConnection!!,
+            Constants.socketConnection!!,
             Constants.SocketSuffix.SOCKET_CONNECT_SEND_CALL_TO_CLIENT
         ).createCallSocket()
     }
